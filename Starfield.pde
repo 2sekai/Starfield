@@ -1,9 +1,10 @@
 Particle [] circles = new Particle [400]; 
 
 void setup() {
+  frameRate(40);
   size(800, 600);
   for (int i = 0; i < circles.length; i++) 
-  circles[i] = new Particle(400, 300);
+    circles[i] = new Particle(400, 300);
   circles[0] = new R(400, 300);
 }
 
@@ -16,10 +17,20 @@ void draw() {
   }
 }
 void mousePressed() {
+
   for (int i = 0; i < circles.length; i++) 
-  circles[i] = new Particle(400, 300);
+    circles[i] = new Particle(400, 300);
   circles[0] = new R(400, 300);
 }
+
+
+void mouseDragged() {
+
+  for (int i = 0; i < circles.length; i++) 
+    circles[i] = new Particle(mouseX, mouseY);
+  circles[0] = new R(mouseX,mouseY);
+}
+
 
 class Particle {
   int myColor;
