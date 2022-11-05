@@ -1,6 +1,7 @@
 Particle [] circles = new Particle [200]; 
 
 void setup() {
+  background(8, 14, 35 );
   frameRate(40);
   size(800, 600);
   for (int i = 0; i < circles.length; i++) 
@@ -9,7 +10,7 @@ void setup() {
 }
 
 void draw() {
-  fill(0, 0, 0, 30);
+  fill(8, 14, 35, 100);
   rect(0, 0, 800, 600);
   for (int i = 0; i < circles.length; i++) {
     circles[i].move();
@@ -17,7 +18,8 @@ void draw() {
   }
 }
 void mousePressed() {
-
+  fill(8, 14, 35, 256);
+  rect(0, 0, 800, 600);
   for (int i = 0; i < circles.length; i++) {
     circles[i] = new Particle(400, 300);
     circles[0] = new R(400, 300);
@@ -61,17 +63,19 @@ class Particle {
 
 class R extends Particle {
   R(int x, int y) {
-    myColor = color(255, (int)(Math.random()*70)+50, (int)(Math.random()*70)+70);
+    myColor = color(255, (int)(Math.random()*30)+50, (int)(Math.random()*70)+70);
     myAngle = Math.random()*(2*Math.PI);
-    mySpeed = Math.random()*8;
+    mySpeed = Math.random()*10;
     myX = x;
     myY= y;
     mySize = 35;
   }
-
+  void move() {
+    myX= myX+Math.cos(myAngle)*mySpeed;
+    myY= myY+Math.sin(myAngle)*mySpeed;
+  }
   void show() {
     fill(myColor);
-
     ellipse((float)myX, (float)myY, (float)mySize, (float)mySize);
     ellipse((float)myX+30, (float)myY, (float)mySize, (float)mySize);
     triangle((float)myX-15, (float)myY+10, (float)myX+44, (float)myY+10, (float)myX+17, (float)myY+55);
